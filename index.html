@@ -1,119 +1,995 @@
 <!DOCTYPE html>
-<html lang="en" class="background-color">
+<html lang="en" class="scroll-smooth">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Recursive">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dancing Script">
-  <link rel="icon" href="./img/logo.png">
-  <title>aaqilniz</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Muhammad Aaqil | Senior Node.js Developer & LoopBack Maintainer</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome & Marked.js (Markdown Parser) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        },
+                        upwork: {
+                            DEFAULT: '#14a800',
+                            hover: '#118c00',
+                            light: 'rgba(20, 168, 0, 0.15)'
+                        },
+                        dark: {
+                            bg: '#0a0d14',
+                            card: '#121824',
+                            border: '#1f293d',
+                            hover: '#1a2334'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0d14;
+            color: #f1f5f9;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+
+        .glow-effect {
+            box-shadow: 0 0 30px -5px rgba(16, 185, 129, 0.25);
+        }
+
+        .glow-effect:hover {
+            box-shadow: 0 0 35px 2px rgba(16, 185, 129, 0.4);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #10B981 0%, #3B82F6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-panel {
+            background: rgba(18, 24, 36, 0.9);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .upwork-svg {
+            fill: currentColor;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* Markdown Renderer Custom Formatting */
+        .markdown-body h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .markdown-body h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-top: 1.75rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid #1f293d;
+            padding-bottom: 0.5rem;
+        }
+
+        .markdown-body h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #10b981;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .markdown-body p {
+            margin-bottom: 1.25rem;
+            color: #cbd5e1;
+        }
+
+        .markdown-body ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1.25rem;
+            color: #cbd5e1;
+        }
+
+        .markdown-body ol {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+            margin-bottom: 1.25rem;
+            color: #cbd5e1;
+        }
+
+        .markdown-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        .markdown-body pre {
+            background-color: #05080f;
+            border: 1px solid #1f293d;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .markdown-body code {
+            font-family: 'Fira Code', monospace;
+            color: #34d399;
+            font-size: 0.95rem;
+        }
+
+        .markdown-body pre code {
+            color: #e2e8f0;
+        }
+
+        .markdown-body blockquote {
+            border-left: 4px solid #10b981;
+            padding-left: 1rem;
+            color: #94a3b8;
+            font-style: italic;
+            margin-bottom: 1.25rem;
+        }
+
+        .markdown-body a {
+            color: #38bdf8;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
-<body class="background-color">
-  <div class="latest-post-div justify-content-center align-items-center">
-    <a class="no-link white-color" href="#">
-      <span class="font-weight-bold">
-        <span class="bg-white pt-1 pb-1 pl-3 pr-3 mr-2 latest-post">
-          latest
-        </span>
-        How to acheive discipline
-      </span>
-    </a>
-  </div>
-  <div class="navbar navbar-default container background-color">
-    <div class="">
-      <a class="navbar-brand" href="#" id="brand-nav-item">
-        <!-- <img src="./img/logo.png" width="60" height="60" class="brand-image d-inline-block align-top" alt="aaqilniz"> -->
-        <h1 style="font-family: Dancing Script;">aaqilniz</h1>
-      </a>
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-black">
+
+    <!-- Top Announcement Banner (Centered) -->
+    <div id="announcement-banner"
+        class="bg-gradient-to-r from-emerald-950 via-gray-900 to-emerald-950 border-b border-brand-500/30 text-white py-2.5 px-4 sticky top-0 z-50 transition-all duration-300">
+        <div class="flex items-center justify-center gap-3 text-xs sm:text-sm text-center max-w-full mx-auto">
+            <span id="banner-tag"
+                class="inline-flex items-center px-2 py-0.5 rounded font-mono font-extrabold text-[11px] bg-brand-500 text-black uppercase tracking-wider shrink-0 shadow-sm shadow-brand-500/50 animate-pulse">
+                NEW
+            </span>
+            <span class="text-gray-300 truncate font-medium flex items-center gap-1.5">
+                <span id="banner-prefix" class="hidden sm:inline">Latest Article:</span>
+                <strong id="banner-post-title" class="text-white font-semibold truncate">Getting Started with LoopBack
+                    4: Building Scalable Node.js Microservices</strong>
+            </span>
+            <button id="banner-read-btn" onclick="openLatestPost()"
+                class="text-brand-500 hover:text-brand-400 font-mono font-bold text-xs sm:text-sm flex items-center gap-1 shrink-0 group ml-1">
+                <span>Read Now</span>
+                <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+            </button>
+        </div>
     </div>
-    <ul class="nav" id="right-side-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
-      </li>
-      <!-- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="./blog.html">Blog</a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Productivity</a>
-          <a class="dropdown-item" href="#">Freelancing</a>
-          <a class="dropdown-item" href="#">Software</a>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-[41px] z-40 glass-panel py-1">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20 sm:h-24">
+                <!-- Logo / Brand -->
+                <a href="#home" onclick="switchTab('home')" class="flex items-center space-x-3.5 group">
+                    <div
+                        class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-500 font-mono font-bold text-xl sm:text-2xl group-hover:bg-brand-500 group-hover:text-black transition-all shadow-md">
+                        &lt;/&gt;
+                    </div>
+                    <div class="flex flex-col">
+                        <span
+                            class="font-extrabold text-lg sm:text-2xl text-white tracking-wide group-hover:text-brand-500 transition-colors">Muhammad
+                            Aaqil</span>
+                        <span class="text-xs sm:text-sm text-brand-500 font-mono font-medium">loopback-next
+                            maintainer</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links (Cleaned: No active/coming-soon badges) -->
+                <nav class="hidden md:flex space-x-10 text-base font-semibold">
+                    <button id="nav-home" onclick="switchTab('home')"
+                        class="nav-btn transition-colors py-2 text-brand-500 border-b-2 border-brand-500">Home</button>
+                    <button id="nav-services" onclick="switchTab('services')"
+                        class="nav-btn transition-colors py-2 text-gray-300 hover:text-white">Services</button>
+                    <button id="nav-blog" onclick="switchTab('blog')"
+                        class="nav-btn transition-colors py-2 text-gray-300 hover:text-white">Blog</button>
+                    <button id="nav-contact" onclick="switchTab('contact')"
+                        class="nav-btn transition-colors py-2 text-gray-300 hover:text-white">Contact</button>
+                </nav>
+
+                <!-- Social Links & Action Button -->
+                <div class="hidden lg:flex items-center space-x-5">
+                    <a href="https://github.com/aaqilniz" target="_blank" rel="noopener noreferrer"
+                        class="p-2.5 text-gray-400 hover:text-white transition-colors" title="GitHub Profile">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/aaqilniz" target="_blank" rel="noopener noreferrer"
+                        class="p-2.5 text-gray-400 hover:text-blue-400 transition-colors" title="LinkedIn Profile">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="https://www.upwork.com/freelancers/~01ba9500ad09388bdc" target="_blank"
+                        rel="noopener noreferrer"
+                        class="p-2.5 text-gray-400 hover:text-upwork transition-colors flex items-center"
+                        title="Upwork Profile">
+                        <svg class="upwork-svg w-6 h-6 text-upwork" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-3.74 0-6.186 2.503-6.994 4.904-1.449-2.181-2.427-4.887-2.6-7.922H5.772v8.527c0 1.956-1.587 3.543-3.543 3.543S-1.314 12.474-1.314 10.518V2H-4.51v8.518c0 3.72 3.024 6.744 6.744 6.744s6.744-3.024 6.744-6.744V7.542c.381 1.83 1.277 3.824 2.585 5.518l-1.896 8.94h3.31l1.328-6.264c1.196.88 2.656 1.402 4.256 1.402 3.916 0 7.104-3.188 7.104-7.104C25.665 6.206 22.477 5.018 18.561 5.018z"
+                                transform="translate(4 1) scale(0.8)" />
+                        </svg>
+                    </a>
+                    <button onclick="switchTab('contact')"
+                        class="ml-2 px-5 py-2.5 text-sm font-mono font-bold bg-brand-500 hover:bg-brand-600 text-black rounded-lg transition-all shadow-lg shadow-brand-500/20">
+                        Hire Me ($30/hr)
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+                        class="p-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 focus:outline-none">
+                        <i class="fas fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-      </li> -->
-      <li class="nav-item">
-        <a class="nav-link" href="blog.html">Blog</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false" href="#">Products</a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Software</a>
-          <a class="dropdown-item" href="#">Courses</a>
-          <a class="dropdown-item" href="#">Ebooks</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">YouTube Channel</a>
+
+        <!-- Mobile Menu Nav -->
+        <div id="mobile-menu"
+            class="hidden md:hidden border-b border-dark-border bg-dark-card px-5 pt-3 pb-6 space-y-3">
+            <button onclick="switchTab('home'); toggleMobileMenu()"
+                class="block w-full text-left py-2.5 px-4 text-lg font-semibold text-brand-500 hover:bg-gray-800 rounded-lg">Home</button>
+            <button onclick="switchTab('services'); toggleMobileMenu()"
+                class="block w-full text-left py-2.5 px-4 text-lg font-semibold text-gray-200 hover:text-white hover:bg-gray-800 rounded-lg">Services</button>
+            <button onclick="switchTab('blog'); toggleMobileMenu()"
+                class="block w-full text-left py-2.5 px-4 text-lg font-semibold text-gray-200 hover:text-white hover:bg-gray-800 rounded-lg">Blog</button>
+            <button onclick="switchTab('contact'); toggleMobileMenu()"
+                class="block w-full text-left py-2.5 px-4 text-lg font-semibold text-gray-200 hover:text-white hover:bg-gray-800 rounded-lg">Contact</button>
+            <div class="pt-4 border-t border-gray-700 flex justify-around items-center">
+                <a href="https://github.com/aaqilniz" target="_blank" class="text-gray-300 hover:text-white"><i
+                        class="fab fa-github text-3xl"></i></a>
+                <a href="https://www.linkedin.com/in/aaqilniz" target="_blank"
+                    class="text-gray-300 hover:text-blue-400"><i class="fab fa-linkedin text-3xl"></i></a>
+                <a href="https://www.upwork.com/freelancers/~01ba9500ad09388bdc" target="_blank"
+                    class="text-gray-300 hover:text-upwork">
+                    <svg class="upwork-svg w-8 h-8 text-upwork" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-3.74 0-6.186 2.503-6.994 4.904-1.449-2.181-2.427-4.887-2.6-7.922H5.772v8.527c0 1.956-1.587 3.543-3.543 3.543S-1.314 12.474-1.314 10.518V2H-4.51v8.518c0 3.72 3.024 6.744 6.744 6.744s6.744-3.024 6.744-6.744V7.542c.381 1.83 1.277 3.824 2.585 5.518l-1.896 8.94h3.31l1.328-6.264c1.196.88 2.656 1.402 4.256 1.402 3.916 0 7.104-3.188 7.104-7.104C25.665 6.206 22.477 5.018 18.561 5.018z"
+                            transform="translate(4 1) scale(0.8)" />
+                    </svg>
+                </a>
+            </div>
         </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false" href="#">Services</a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Web Development</a>
-          <a class="dropdown-item" href="#">Content Writing</a>
-          <a class="dropdown-item" href="#">Web Designing</a>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <!-- HOME SECTION -->
+        <section id="section-home" class="tab-content block space-y-16">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center pt-4">
+                <div class="lg:col-span-7 space-y-7">
+                    <div
+                        class="inline-flex items-center space-x-2.5 px-4 py-2 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-500 font-mono text-sm">
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-500 animate-ping"></span>
+                        <span>Available for Freelance & Contract Work</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                        Backend Architect & <span class="gradient-text">Node.js Expert</span>
+                    </h1>
+
+                    <p class="text-lg sm:text-xl text-gray-300 leading-relaxed font-normal">
+                        Hi, I'm <strong class="text-white font-semibold">Muhammad Aaqil</strong>. A passionate
+                        JavaScript/Node.js Developer with <strong class="text-white font-semibold">8+ years of
+                            expertise</strong>. Core open-source maintainer of <span
+                            class="font-mono text-brand-500 bg-brand-500/10 px-2 py-0.5 rounded border border-brand-500/20">loopback-next</span>
+                        and specialist in resilient REST/GraphQL APIs, microservices, and database systems.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <button onclick="switchTab('contact')"
+                            class="px-7 py-4 bg-brand-500 hover:bg-brand-600 text-black font-bold text-base rounded-xl transition-all glow-effect flex items-center gap-2.5">
+                            <i class="fas fa-paper-plane text-lg"></i> Get In Touch
+                        </button>
+                        <button onclick="switchTab('blog')"
+                            class="px-7 py-4 bg-dark-card hover:bg-dark-hover border border-dark-border text-white font-bold text-base rounded-xl transition-all flex items-center gap-2.5">
+                            <i class="fas fa-newspaper text-lg"></i> Read Articles
+                        </button>
+                        <a href="https://www.upwork.com/freelancers/~01ba9500ad09388bdc" target="_blank" rel="noopener"
+                            class="px-7 py-4 bg-emerald-950/60 hover:bg-emerald-900/80 border border-emerald-500/40 text-emerald-400 font-bold text-base rounded-xl transition-all flex items-center gap-2.5">
+                            <svg class="upwork-svg w-5 h-5 fill-emerald-400" viewBox="0 0 24 24">
+                                <path
+                                    d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-3.74 0-6.186 2.503-6.994 4.904-1.449-2.181-2.427-4.887-2.6-7.922H5.772v8.527c0 1.956-1.587 3.543-3.543 3.543S-1.314 12.474-1.314 10.518V2H-4.51v8.518c0 3.72 3.024 6.744 6.744 6.744s6.744-3.024 6.744-6.744V7.542c.381 1.83 1.277 3.824 2.585 5.518l-1.896 8.94h3.31l1.328-6.264c1.196.88 2.656 1.402 4.256 1.402 3.916 0 7.104-3.188 7.104-7.104C25.665 6.206 22.477 5.018 18.561 5.018z"
+                                    transform="translate(4 1) scale(0.8)" />
+                            </svg> Upwork Profile ($30/hr)
+                        </a>
+                    </div>
+
+                    <!-- Tech Stack Pills -->
+                    <div class="pt-6 border-t border-dark-border">
+                        <span
+                            class="text-xs font-mono text-gray-400 uppercase tracking-wider block mb-3 font-semibold">Core
+                            Expertise & Technologies</span>
+                        <div class="flex flex-wrap gap-2.5 text-sm font-mono">
+                            <span
+                                class="px-3.5 py-2 rounded-lg bg-dark-card border border-dark-border text-gray-200 flex items-center gap-2"><i
+                                    class="fab fa-node-js text-green-500 text-base"></i> Node.js</span>
+                            <span
+                                class="px-3.5 py-2 rounded-lg bg-dark-card border border-dark-border text-gray-200 flex items-center gap-2"><i
+                                    class="fas fa-code-branch text-brand-500 text-base"></i> LoopBack 4</span>
+                            <span
+                                class="px-3.5 py-2 rounded-lg bg-dark-card border border-dark-border text-gray-200 flex items-center gap-2"><i
+                                    class="fas fa-server text-blue-400 text-base"></i> ExpressJS</span>
+                            <span
+                                class="px-3.5 py-2 rounded-lg bg-dark-card border border-dark-border text-gray-200 flex items-center gap-2"><i
+                                    class="fas fa-database text-yellow-500 text-base"></i> MySQL / MongoDB</span>
+                            <span
+                                class="px-3.5 py-2 rounded-lg bg-dark-card border border-dark-border text-gray-200 flex items-center gap-2"><i
+                                    class="fab fa-angular text-red-500 text-base"></i> Angular</span>
+                            <span
+                                class="px-3.5 py-2 rounded-lg bg-dark-card border border-dark-border text-gray-200 flex items-center gap-2"><i
+                                    class="fas fa-fire text-orange-500 text-base"></i> Firebase</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LoopBack Maintainer Card -->
+                <div class="lg:col-span-5">
+                    <div
+                        class="rounded-2xl border border-brand-500/30 bg-dark-card p-6 shadow-2xl space-y-6 relative overflow-hidden group">
+                        <!-- Glow Accent Background -->
+                        <div
+                            class="absolute -right-10 -top-10 w-40 h-40 bg-brand-500/10 rounded-full blur-3xl group-hover:bg-brand-500/20 transition-all">
+                        </div>
+
+                        <div class="flex items-center justify-between border-b border-dark-border pb-4">
+                            <div class="flex items-center space-x-3">
+                                <div
+                                    class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-500 font-mono font-bold text-lg">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-bold text-lg leading-tight">Official Maintainer</h3>
+                                    <p class="text-xs font-mono text-brand-500">loopback-next</p>
+                                </div>
+                            </div>
+                            <span
+                                class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-brand-500/10 text-brand-500 border border-brand-500/30">
+                                Active Core Contributor
+                            </span>
+                        </div>
+
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Actively maintaining the official LoopBack 4 ecosystem, fixing critical issues, reviewing
+                            framework PRs, and driving core Node.js TypeScript architecture improvements.
+                        </p>
+
+                        <div class="grid grid-cols-2 gap-3 pt-2">
+                            <div class="p-3 rounded-xl bg-gray-950 border border-dark-border">
+                                <div class="text-xs text-gray-400 font-mono">Framework</div>
+                                <div class="text-sm font-bold text-white font-mono mt-0.5">LoopBack 4</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-gray-950 border border-dark-border">
+                                <div class="text-xs text-gray-400 font-mono">Org</div>
+                                <div class="text-sm font-bold text-white font-mono mt-0.5">openjs-foundation</div>
+                            </div>
+                        </div>
+
+                        <a href="https://github.com/orgs/loopbackio/people" target="_blank" rel="noopener noreferrer"
+                            class="w-full py-3 px-4 rounded-xl bg-brand-500/10 hover:bg-brand-500 text-brand-500 hover:text-black font-mono font-bold text-xs uppercase tracking-wider border border-brand-500/30 transition-all flex items-center justify-center gap-2 group/btn">
+                            <i class="fab fa-github text-sm"></i>
+                            <span>Verify Maintainer Status</span>
+                            <i
+                                class="fas fa-external-link-alt text-xs group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 p-8 rounded-2xl bg-dark-card border border-dark-border">
+                <div class="text-center p-3">
+                    <div class="text-4xl sm:text-5xl font-extrabold text-white font-mono">8+</div>
+                    <div class="text-sm sm:text-base text-gray-400 mt-2 font-medium">Years Experience</div>
+                </div>
+                <div class="text-center p-3">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-brand-500 font-mono mt-1">Maintainer</div>
+                    <div class="text-sm sm:text-base text-gray-400 mt-2 font-medium">loopback-next</div>
+                </div>
+                <div class="text-center p-3">
+                    <div class="text-4xl sm:text-5xl font-extrabold text-white font-mono">100%</div>
+                    <div class="text-sm sm:text-base text-gray-400 mt-2 font-medium">Quality Commitment</div>
+                </div>
+                <div class="text-center p-3">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-blue-400 font-mono">$30/hr</div>
+                    <div class="text-sm sm:text-base text-gray-400 mt-2 font-medium">Upwork Rate</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="section-services" class="tab-content hidden space-y-12">
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Services & Expertise</h2>
+                <p class="text-gray-300 text-base sm:text-lg">
+                    Comprehensive backend development, enterprise API design, software architecture, and full-stack
+                    solutions tailored for reliability and performance.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div
+                    class="p-8 rounded-2xl bg-dark-card border border-dark-border hover:border-brand-500/50 transition-all group flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-green-500/10 text-green-500 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+                            <i class="fab fa-node-js"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white group-hover:text-brand-500 transition-colors">Node.js &
+                            Express Architecture</h3>
+                        <p class="text-gray-300 text-base leading-relaxed">
+                            Building enterprise-grade, high-throughput asynchronous Node.js backend services. Clean code
+                            structure, efficient event loop usage, modular RESTful API design, and middleware
+                            configuration.
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-dark-border font-mono text-xs font-semibold text-gray-400">
+                        Node.js • Express • Async Patterns
+                    </div>
+                </div>
+
+                <div
+                    class="p-8 rounded-2xl bg-dark-card border border-dark-border hover:border-brand-500/50 transition-all group flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white group-hover:text-brand-500 transition-colors">LoopBack
+                            Framework Mastery</h3>
+                        <p class="text-gray-300 text-base leading-relaxed">
+                            Expert-level implementation of LoopBack (2, 3 & LoopBack 4). Custom connectors,
+                            auto-generated REST endpoints, dependency injection, repositories, and complex
+                            authentication hooks.
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-dark-border font-mono text-xs font-semibold text-gray-400">
+                        LoopBack 4 • TypeScript • Connectors
+                    </div>
+                </div>
+
+                <div
+                    class="p-8 rounded-2xl bg-dark-card border border-dark-border hover:border-brand-500/50 transition-all group flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white group-hover:text-brand-500 transition-colors">Database
+                            Engineering</h3>
+                        <p class="text-gray-300 text-base leading-relaxed">
+                            Relational and NoSQL database modeling, querying, indexing, and optimization using MySQL,
+                            MongoDB, and Firebase. Schema migrations and transactional safety.
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-dark-border font-mono text-xs font-semibold text-gray-400">
+                        MySQL • MongoDB • Firebase • Query Tuning
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOG SECTION (DYNAMIC EXTERNAL MARKDOWN ENGINE) -->
+        <section id="section-blog" class="tab-content hidden space-y-10">
+            <!-- Blog List View Container -->
+            <div id="blog-list-view" class="space-y-8">
+                <div class="text-center max-w-3xl mx-auto space-y-4">
+                    <div
+                        class="inline-flex items-center space-x-2.5 px-4 py-2 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-500 font-mono text-sm font-semibold">
+                        <i class="fas fa-code-branch"></i>
+                        <span>Node.js, LoopBack & System Design Insights</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Articles & Tutorials</h2>
+                    <p class="text-gray-300 text-base sm:text-lg">
+                        Technical articles written by Muhammad Aaqil on backend design patterns, LoopBack 4
+                        microservices, and database optimizations.
+                    </p>
+                </div>
+
+                <!-- Articles Search Bar -->
+                <div class="max-w-xl mx-auto">
+                    <div class="relative">
+                        <input type="text" id="blog-search" oninput="renderBlogList()"
+                            placeholder="Search articles by title, content, or tag..."
+                            class="w-full pl-12 pr-4 py-3.5 rounded-xl bg-dark-card border border-dark-border text-white focus:outline-none focus:border-brand-500 text-base">
+                        <i class="fas fa-search absolute left-4 top-4 text-gray-500"></i>
+                    </div>
+                </div>
+
+                <!-- Rendered Article Cards List -->
+                <div id="blog-cards-container" class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- Cards dynamically injected from external .md files -->
+                </div>
+            </div>
+
+            <!-- Single Article Viewer Container -->
+            <div id="blog-detail-view" class="hidden space-y-8 max-w-4xl mx-auto">
+                <button onclick="hideArticleDetail()"
+                    class="inline-flex items-center space-x-2 px-5 py-2.5 bg-dark-card hover:bg-dark-hover border border-dark-border text-brand-500 rounded-xl font-mono text-sm font-bold transition-all">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to All Articles</span>
+                </button>
+
+                <article class="p-8 sm:p-12 rounded-2xl bg-dark-card border border-dark-border space-y-6">
+                    <div class="space-y-3 border-b border-dark-border pb-6">
+                        <div id="article-tags" class="flex flex-wrap gap-2"></div>
+                        <h1 id="article-title" class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                        </h1>
+                        <div class="flex items-center space-x-4 text-sm font-mono text-gray-400">
+                            <span id="article-date"><i class="far fa-calendar-alt"></i> </span>
+                            <span id="article-readtime"><i class="far fa-clock"></i> </span>
+                            <span><i class="far fa-user"></i> Muhammad Aaqil</span>
+                        </div>
+                    </div>
+
+                    <!-- Markdown Content Render Target -->
+                    <div id="article-content" class="markdown-body leading-relaxed text-gray-300"></div>
+                </article>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="section-contact" class="tab-content hidden space-y-12">
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Get In Touch</h2>
+                <p class="text-gray-300 text-base sm:text-lg">
+                    Have a project in mind, need technical advice on Node.js/LoopBack, or want to hire me on Upwork?
+                    Send me a direct message below.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                <!-- Contact Info Panel -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="p-8 rounded-2xl bg-dark-card border border-dark-border space-y-7">
+                        <h3 class="text-2xl font-bold text-white border-b border-dark-border pb-4">Contact & Hire</h3>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="p-3 bg-upwork-light text-upwork rounded-xl shrink-0">
+                                    <svg class="upwork-svg w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-3.74 0-6.186 2.503-6.994 4.904-1.449-2.181-2.427-4.887-2.6-7.922H5.772v8.527c0 1.956-1.587 3.543-3.543 3.543S-1.314 12.474-1.314 10.518V2H-4.51v8.518c0 3.72 3.024 6.744 6.744 6.744s6.744-3.024 6.744-6.744V7.542c.381 1.83 1.277 3.824 2.585 5.518l-1.896 8.94h3.31l1.328-6.264c1.196.88 2.656 1.402 4.256 1.402 3.916 0 7.104-3.188 7.104-7.104C25.665 6.206 22.477 5.018 18.561 5.018z"
+                                            transform="translate(4 1) scale(0.8)" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-base font-bold text-white">Upwork Hourly Profile</h4>
+                                    <p class="text-sm text-gray-400 mt-0.5">$30.00/hr • Full Commitment to Quality</p>
+                                    <a href="https://www.upwork.com/freelancers/~01ba9500ad09388bdc" target="_blank"
+                                        class="text-sm text-upwork hover:underline font-mono font-bold inline-block mt-1.5">View
+                                        Upwork Profile &rarr;</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="p-3.5 bg-blue-500/10 text-blue-400 rounded-xl shrink-0">
+                                    <i class="fab fa-linkedin text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-base font-bold text-white">LinkedIn</h4>
+                                    <p class="text-sm text-gray-400 mt-0.5">Professional Networking & Inquiries</p>
+                                    <a href="https://www.linkedin.com/in/aaqilniz" target="_blank"
+                                        class="text-sm text-blue-400 hover:underline font-mono font-bold inline-block mt-1.5">linkedin.com/in/aaqilniz
+                                        &rarr;</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="p-3.5 bg-gray-800 text-gray-200 rounded-xl shrink-0">
+                                    <i class="fab fa-github text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-base font-bold text-white">GitHub</h4>
+                                    <p class="text-sm text-gray-400 mt-0.5">Open Source Contributions & Repositories</p>
+                                    <a href="https://github.com/aaqilniz" target="_blank"
+                                        class="text-sm text-gray-300 hover:underline font-mono font-bold inline-block mt-1.5">github.com/aaqilniz
+                                        &rarr;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Email Form -->
+                <div class="lg:col-span-7">
+                    <form onsubmit="handleFormSubmit(event)"
+                        class="p-8 sm:p-10 rounded-2xl bg-dark-card border border-dark-border space-y-6">
+                        <h3 class="text-2xl font-bold text-white">Send a Direct Message</h3>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-mono text-gray-300 mb-2 font-semibold">Your Name
+                                    *</label>
+                                <input type="text" id="form-name" required placeholder="John Doe"
+                                    class="w-full px-4 py-3.5 rounded-xl bg-gray-950 border border-dark-border text-white focus:outline-none focus:border-brand-500 text-base">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-mono text-gray-300 mb-2 font-semibold">Your Email
+                                    *</label>
+                                <input type="email" id="form-email" required placeholder="john@example.com"
+                                    class="w-full px-4 py-3.5 rounded-xl bg-gray-950 border border-dark-border text-white focus:outline-none focus:border-brand-500 text-base">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-mono text-gray-300 mb-2 font-semibold">Subject</label>
+                                <input type="text" id="form-subject" placeholder="Project Inquiry / Job Opportunity"
+                                    class="w-full px-4 py-3.5 rounded-xl bg-gray-950 border border-dark-border text-white focus:outline-none focus:border-brand-500 text-base">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-mono text-gray-300 mb-2 font-semibold">Engagement
+                                    Type</label>
+                                <select id="form-type"
+                                    class="w-full px-4 py-3.5 rounded-xl bg-gray-950 border border-dark-border text-white focus:outline-none focus:border-brand-500 text-base">
+                                    <option value="Hourly Contract ($30/hr)">Hourly Contract ($30/hr)</option>
+                                    <option value="Fixed Price Project">Fixed Price Project</option>
+                                    <option value="Consultation / Code Audit">Consultation / Code Audit</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-mono text-gray-300 mb-2 font-semibold">Project Details &
+                                Requirements *</label>
+                            <textarea id="form-message" rows="5" required
+                                placeholder="Tell me about your tech stack, goals, or technical issues..."
+                                class="w-full px-4 py-3.5 rounded-xl bg-gray-950 border border-dark-border text-white focus:outline-none focus:border-brand-500 text-base"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full py-4 bg-brand-500 hover:bg-brand-600 text-black font-bold rounded-xl transition-all text-base flex items-center justify-center gap-2.5">
+                            <i class="fas fa-paper-plane text-lg"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-dark-border bg-gray-950 py-10 mt-16">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-3">
+                <span class="text-sm font-mono text-gray-400">&copy; <span id="current-year"></span> Muhammad Aaqil. All
+                    rights reserved.</span>
+            </div>
+            <div class="flex items-center space-x-8 text-base">
+                <a href="https://github.com/aaqilniz" target="_blank"
+                    class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"><i
+                        class="fab fa-github"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/aaqilniz" target="_blank"
+                    class="text-gray-400 hover:text-blue-400 transition-colors flex items-center gap-2"><i
+                        class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://www.upwork.com/freelancers/~01ba9500ad09388bdc" target="_blank"
+                    class="text-gray-400 hover:text-upwork transition-colors flex items-center gap-2">
+                    <svg class="upwork-svg w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-3.74 0-6.186 2.503-6.994 4.904-1.449-2.181-2.427-4.887-2.6-7.922H5.772v8.527c0 1.956-1.587 3.543-3.543 3.543S-1.314 12.474-1.314 10.518V2H-4.51v8.518c0 3.72 3.024 6.744 6.744 6.744s6.744-3.024 6.744-6.744V7.542c.381 1.83 1.277 3.824 2.585 5.518l-1.896 8.94h3.31l1.328-6.264c1.196.88 2.656 1.402 4.256 1.402 3.916 0 7.104-3.188 7.104-7.104C25.665 6.206 22.477 5.018 18.561 5.018z"
+                            transform="translate(4 1) scale(0.8)" />
+                    </svg> Upwork
+                </a>
+            </div>
         </div>
-      </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="#">Software</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Courses</a>
-      </li> -->
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact</a>
-      </li>
-      <!-- The privacy policy page should go into the footer section -->
-      <li class="nav-item">
-        <a class="nav-link" href="#">Privacy Policy</a>
-      </li>
-    </ul>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-9 col-xl-7 mt-md-6">
-        <h1 class="intro">A software developer with a passion to write.</h1>
-        <div class="row padding-top-40">
-          <div class="col-lg-12">
-            <p style="opacity: .7;">I will be writing about software development,
-              architecture, freelancing, productivity and time managmenet.</p>
-            <h3>Do you need a software expert that could help you build your next big app?</h3>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-xl-5 mt-md-6">
-        <img src="./img/intro.jpg" style="width: 500px; height: 200px;" alt="website-intro">
-      </div>
-    </div>
-    <div class="row padding-top-40">
-      <div class="col-6">
-        <button type="button" class="btn btn-outline-primary">See my work</button>
-        <button type="button" class="btn btn-outline-primary">Contact me</button>
-      </div>
-    </div>
-  </div>
+    </footer>
+    <script>
+        document.getElementById('current-year').innerText = new Date().getFullYear();
+
+        /* ==========================================================================
+           EXTERNAL MARKDOWN POST FILES INDEX
+           ========================================================================== */
+        const POST_FILES = [
+            './posts/intro-to-loopback-4.md',
+        ];
+
+        let loadedPosts = [];
+
+        /* Markdown Front Matter Parser */
+        async function parseMarkdownPost(filePath) {
+            const response = await fetch(filePath);
+            if (!response.ok) throw new Error(`HTTP ${response.status} when fetching ${filePath}`);
+            const text = await response.text();
+
+            const frontMatterRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/;
+            const match = text.match(frontMatterRegex);
+
+            if (!match) {
+                return {
+                    id: filePath.replace(/^.*[\\\/]/, '').replace('.md', ''),
+                    title: 'Untitled Article',
+                    date: new Date().toISOString().split('T')[0],
+                    readTime: '3 min read',
+                    tags: ['General'],
+                    summary: 'Technical article',
+                    content: text
+                };
+            }
+
+            const yamlBlock = match[1];
+            const markdownContent = match[2];
+
+            const metadata = {};
+            yamlBlock.split('\n').forEach(line => {
+                const [key, ...valueParts] = line.split(':');
+                if (key && valueParts.length) {
+                    let val = valueParts.join(':').trim();
+                    if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+                        val = val.slice(1, -1);
+                    }
+                    if (val.startsWith('[') && val.endsWith(']')) {
+                        metadata[key.trim()] = val.slice(1, -1).split(',').map(s => s.trim().replace(/^["']|["']$/g, ''));
+                    } else {
+                        metadata[key.trim()] = val;
+                    }
+                }
+            });
+
+            return {
+                ...metadata,
+                content: markdownContent
+            };
+        }
+
+        /* Fetch, Parse, and Sort All Posts from /posts */
+        async function loadAllPosts() {
+            loadedPosts = [];
+
+            for (const filePath of POST_FILES) {
+                try {
+                    const post = await parseMarkdownPost(filePath);
+                    if (post) loadedPosts.push(post);
+                } catch (err) {
+                    console.warn(`Could not fetch external post (${filePath}).`, err);
+                }
+            }
+
+            // Sort posts chronologically: Latest First
+            loadedPosts.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+
+            const bannerTag = document.getElementById('banner-tag');
+            const bannerPrefix = document.getElementById('banner-prefix');
+            const bannerPostTitle = document.getElementById('banner-post-title');
+            const bannerReadBtn = document.getElementById('banner-read-btn');
+            const announcementBanner = document.getElementById('announcement-banner');
+
+            if (announcementBanner) {
+                announcementBanner.classList.remove('hidden');
+            }
+
+            if (loadedPosts.length > 0) {
+                // State A: Published posts exist from /posts
+                if (bannerTag) {
+                    bannerTag.innerText = 'NEW';
+                    bannerTag.className = 'inline-flex items-center px-2 py-0.5 rounded font-mono font-extrabold text-[11px] bg-brand-500 text-black uppercase tracking-wider shrink-0 shadow-sm shadow-brand-500/50 animate-pulse';
+                }
+                if (bannerPrefix) bannerPrefix.innerText = 'Latest Article:';
+                if (bannerPostTitle) bannerPostTitle.innerText = loadedPosts[0].title;
+                if (bannerReadBtn) bannerReadBtn.classList.remove('hidden');
+            } else {
+                // State B: No posts fetched/available (Coming Soon)
+                if (bannerTag) {
+                    bannerTag.innerText = 'COMING SOON';
+                    bannerTag.className = 'inline-flex items-center px-2 py-0.5 rounded font-mono font-extrabold text-[11px] bg-amber-500/20 text-amber-400 border border-amber-500/30 uppercase tracking-wider shrink-0';
+                }
+                if (bannerPrefix) bannerPrefix.innerText = 'Status:';
+                if (bannerPostTitle) bannerPostTitle.innerText = 'New technical articles and tutorials are currently in progress.';
+                if (bannerReadBtn) bannerReadBtn.classList.add('hidden');
+            }
+
+            renderBlogList();
+        }
+
+        /* Render Blog Section Cards or Empty Container */
+        function renderBlogList() {
+            const container = document.getElementById('blog-cards-container');
+            const searchInput = document.getElementById('blog-search');
+            const searchQuery = (searchInput ? searchInput.value : '').toLowerCase();
+            if (!container) return;
+            container.innerHTML = '';
+
+            // Case 1: No published posts exist
+            if (loadedPosts.length === 0) {
+                container.innerHTML = `
+                <div class="col-span-full text-center py-16 px-6 rounded-2xl bg-dark-card border border-dark-border space-y-4">
+                    <div class="w-16 h-16 mx-auto rounded-full bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-500 text-2xl">
+                        <i class="fas fa-hourglass-half"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">Articles Coming Soon</h3>
+                    <p class="text-gray-400 max-w-md mx-auto text-sm sm:text-base">
+                        I am currently writing technical guides on Node.js architecture, LoopBack 4 microservices, and database tuning. Check back soon!
+                    </p>
+                </div>
+            `;
+                return;
+            }
+
+            // Case 2: Filter posts based on search input
+            const filtered = loadedPosts.filter(art =>
+                art.title.toLowerCase().includes(searchQuery) ||
+                art.summary.toLowerCase().includes(searchQuery) ||
+                (art.tags && art.tags.some(t => t.toLowerCase().includes(searchQuery)))
+            );
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                <div class="col-span-full text-center py-12 text-gray-400 font-mono">
+                    No articles found matching "${searchQuery}".
+                </div>
+            `;
+                return;
+            }
+
+            // Case 3: Render post cards (latest first)
+            filtered.forEach(article => {
+                const tagsHtml = (article.tags || []).map(t =>
+                    `<span class="px-2.5 py-1 text-xs font-mono font-semibold bg-brand-500/10 text-brand-500 rounded-md border border-brand-500/20">${t}</span>`
+                ).join(' ');
+
+                const card = document.createElement('div');
+                card.className = "p-8 rounded-2xl bg-dark-card border border-dark-border hover:border-brand-500/50 transition-all flex flex-col justify-between group cursor-pointer";
+                card.onclick = () => showArticleDetail(article.id);
+
+                card.innerHTML = `
+                <div class="space-y-4">
+                    <div class="flex flex-wrap gap-2">${tagsHtml}</div>
+                    <h3 class="text-2xl font-bold text-white group-hover:text-brand-500 transition-colors leading-snug">${article.title}</h3>
+                    <p class="text-gray-300 text-base leading-relaxed">${article.summary}</p>
+                </div>
+                <div class="mt-8 pt-4 border-t border-dark-border flex items-center justify-between text-xs font-mono text-gray-400">
+                    <span><i class="far fa-calendar-alt"></i> ${article.date}</span>
+                    <span><i class="far fa-clock"></i> ${article.readTime}</span>
+                    <span class="text-brand-500 font-bold group-hover:underline">Read Article &rarr;</span>
+                </div>
+            `;
+                container.appendChild(card);
+            });
+        }
+
+        /* Tab Switcher & Hash Persistence */
+        function switchTab(tabId, updateHash = true) {
+            const validTabs = ['home', 'services', 'blog', 'contact'];
+            if (!validTabs.includes(tabId)) tabId = 'home';
+
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.add('hidden');
+                content.classList.remove('block');
+            });
+
+            const targetSection = document.getElementById('section-' + tabId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+                targetSection.classList.add('block');
+            }
+
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.classList.remove('text-brand-500', 'border-b-2', 'border-brand-500');
+                btn.classList.add('text-gray-300');
+            });
+
+            const activeBtn = document.getElementById('nav-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-gray-300');
+                activeBtn.classList.add('text-brand-500', 'border-b-2', 'border-brand-500');
+            }
+
+            if (tabId === 'blog') renderBlogList();
+            if (updateHash) window.location.hash = tabId;
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openLatestPost() {
+            if (loadedPosts.length === 0) return;
+            switchTab('blog');
+            showArticleDetail(loadedPosts[0].id);
+        }
+
+        /* Mobile Menu Toggle */
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) menu.classList.toggle('hidden');
+        }
+
+        /* Show Article Detail View */
+        function showArticleDetail(articleId) {
+            const article = loadedPosts.find(a => a.id === articleId);
+            if (!article) return;
+
+            document.getElementById('blog-list-view').classList.add('hidden');
+            document.getElementById('blog-detail-view').classList.remove('hidden');
+
+            document.getElementById('article-title').innerText = article.title;
+            document.getElementById('article-date').innerHTML = `<i class="far fa-calendar-alt"></i> ${article.date}`;
+            document.getElementById('article-readtime').innerHTML = `<i class="far fa-clock"></i> ${article.readTime}`;
+
+            const tagsContainer = document.getElementById('article-tags');
+            tagsContainer.innerHTML = (article.tags || []).map(t =>
+                `<span class="px-3 py-1 text-xs font-mono font-semibold bg-brand-500/10 text-brand-500 rounded-md border border-brand-500/20">${t}</span>`
+            ).join(' ');
+
+            document.getElementById('article-content').innerHTML = typeof marked !== 'undefined' ? marked.parse(article.content) : article.content;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* Hide Article Detail View */
+        function hideArticleDetail() {
+            document.getElementById('blog-detail-view').classList.add('hidden');
+            document.getElementById('blog-list-view').classList.remove('hidden');
+        }
+
+        /* Contact Form Mailto Handler */
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('form-name').value;
+            const email = document.getElementById('form-email').value;
+            const subject = document.getElementById('form-subject').value || 'Portfolio Contact';
+            const type = document.getElementById('form-type').value;
+            const message = document.getElementById('form-message').value;
+
+            const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0AType: ${type}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+            window.location.href = `mailto:aaqil.niz@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+        }
+
+        /* Hash Routing Event Listeners */
+        window.addEventListener('hashchange', () => {
+            const hashTab = window.location.hash.replace('#', '');
+            if (hashTab) switchTab(hashTab, false);
+        });
+
+        window.onload = async function () {
+            await loadAllPosts();
+            const hashTab = window.location.hash.replace('#', '') || 'home';
+            switchTab(hashTab, false);
+        };
+    </script>
 </body>
 
 </html>
