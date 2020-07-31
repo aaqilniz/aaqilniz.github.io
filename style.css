@@ -7,7 +7,8 @@ body, html {
 }
 
 .background-color {
-  background-color: rgb(251, 252, 254) !important;
+  background-image: linear-gradient(to left, rgb(251, 252, 254), rgb(210, 217, 233));
+  /* background-color: rgb(251, 252, 254) !important; */
   /* background-color: rgb(236, 241, 250) !important; */
   /* rgb(251, 252, 254) */
 }
@@ -195,7 +196,11 @@ body, html {
 }
 
 .card {
-  box-shadow: 0 4px 14px rgba(44, 50, 56, .1);
+  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); */
+  box-shadow: 5px 5px 5px 5px rgba(44, 50, 56, .1);
+  border: none !important;
+  /* background-color: rgb(248, 245, 245) !important; */
+  /* background-color:  !important; */
 }
 
 .border-radius-16 {
@@ -204,6 +209,20 @@ body, html {
 
 .height-34 {
   height: 34px !important;
+}
+
+.custom-card {
+  z-index: 1;
+  border-radius: 12px !important;
+  /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15); */
+  transition: box-shadow 0.3s ease-in-out;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis !important;
+}
+
+.height-70-cent {
+  height: 70% !important;
 }
 
 .custom-card:hover {
@@ -221,16 +240,6 @@ body, html {
   border-radius: 6px !important;
 }
 
-.custom-card {
-  z-index: 1;
-  border-radius: 12px !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-  transition: box-shadow 0.3s ease-in-out;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis !important;
-}
-
 .card-image {
   padding-top: 1em;
   padding-left: 2em !important;
@@ -246,18 +255,32 @@ body, html {
 }
 
 .tags:hover {
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
-  transition: box-shadow 0.3s ease-in-out !important;
+  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); */
+  /* transform: scale(1.1); */
+  background-color: #5490f7 !important;
+  /* box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3); */
+  /* transition: box-shadow 0.3s ease-in-out !important; */
+  /* transition: box-shadow 0.3s ease-in-out !important; */
 }
 
 .tags {
   font-size: 20px !important;
   /* color: #1757c2 !important; */
-  color: black !important;
+  /* color: black !important; */
+  background-color: #5684d3 !important;
+  /* color: white !important; */
   font-weight: 500 !important;
-  background-color: whitesmoke !important;
-  border-radius: 10px !important;
+  /* background-color: whitesmoke !important; */
+  border-radius: 5px !important;
+  padding: 8px !important;
   /* border: 1px solid rgb(12, 31, 105); */
+}
+
+.active-badge {
+  background-color: #2756a7 !important;
+  /* background-color:  !important; */
+  /* background-color: blue !important; */
+  /* color: white !important; */
 }
 
 .contact-button {
