@@ -6,6 +6,12 @@ body, html {
   font-size: 16px !important;
 }
 
+#coming-soon {
+  display: grid;
+  place-items: center; /* Centers both horizontally and vertically */
+  height: 100vh;
+}
+
 .background-color {
   background-image: linear-gradient(to left, rgb(234, 237, 243), rgb(230, 232, 240));
   /* background-color: rgb(251, 252, 254) !important; */
